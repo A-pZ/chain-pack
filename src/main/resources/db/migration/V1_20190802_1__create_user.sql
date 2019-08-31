@@ -1,5 +1,6 @@
-CREATE TABLE `User` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(40) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-)
+CREATE TABLE `user` (
+  `user_id` int(8) NOT NULL,
+  `name` varchar(256) NOT NULL,
+  `insert_time` datetime,
+  `update_time` datetime
+);

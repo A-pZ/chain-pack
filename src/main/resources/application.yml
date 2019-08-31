@@ -4,4 +4,4 @@ webjars:
 spring:  datasource:    url: "jdbc:mysql://127.0.0.1/test"
     username: "root"
     password: "password"
-    driver-class-name: "com.mysql.jdbc.Driver"
+    driver-class-name: "com.mysql.jdbc.Driver"  flyway:    enabled: false
