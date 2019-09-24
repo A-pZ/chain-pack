@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.github.apz.datasource.ItemMapper">
+	<select id="findStoreItems" resultType="com.github.apz.model.item.Item">
+		SELECT
+			item_id
+			, name
+			, update_time
+		FROM item
+
+		ORDER BY
+			item_id DESC
+	</select>
+
+	<insert id="register">
+		INSERT INTO
+			item
+		(name, insert_time, update_time)
+		VALUES
+		(#{item.name}, #{item.insertTime}, #{item.updateTime})
+	</insert>
+</mapper>

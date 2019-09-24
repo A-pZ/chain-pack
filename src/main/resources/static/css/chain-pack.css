@@ -8,3 +8,10 @@
 	padding: 20px;
 	margin: 10px;
 }
+
+.toast-group {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    z-index: 9999;
+}

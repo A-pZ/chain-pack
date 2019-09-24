@@ -5,3 +5,12 @@ spring:  datasource:    url: "jdbc:mysql://127.0.0.1/test"
     username: "root"
     password: "password"
     driver-class-name: "com.mysql.jdbc.Driver"  flyway:    enabled: false
+mybatis:
+  mapper-locations: db/datasource/*
+  type-aliases-package: com.github.apz.model
+  type-handlers-package: com.github.apz.datasource.typehandler
+  configuration:
+    map-underscore-to-camel-case: true
+logging:
+  level:
+    com.github.apz.datasource: TRACE
