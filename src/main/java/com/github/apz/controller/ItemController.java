@@ -62,6 +62,10 @@ public class ItemController {
 
 	@PostMapping("/")
 	public ModelAndView register(@RequestParam("name") String name, ModelAndView mnv, RedirectAttributes redirects) {
+		if (StringUtils.isEmpty(name)) {
+			mnv.setViewName("redirect:/item/all");
+			return mnv;
+		}
 		service.register(Item.newItem(name));
 		redirects.addFlashAttribute("message", "登録が完了しました");
 		mnv.setViewName("redirect:/item/all");

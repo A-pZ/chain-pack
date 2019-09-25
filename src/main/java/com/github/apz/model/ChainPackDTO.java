@@ -1,6 +1,8 @@
 package com.github.apz.model;
 
 import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.Objects;
 
 import lombok.Getter;

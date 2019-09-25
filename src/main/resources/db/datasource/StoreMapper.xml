@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.github.apz.datasource.StoreMapper">
+	<select id="findAllStore" resultType="com.github.apz.model.store.Store">
+		SELECT
+			store_id
+			, store_name
+			, update_time
+		FROM store
+
+		ORDER BY
+			store_id DESC
+	</select>
+
+	<insert id="register">
+		INSERT INTO
+			store
+		(store_name, insert_time, update_time)
+		VALUES
+		(#{store.storeName}, #{store.insertTime}, #{store.updateTime})
+	</insert>
+
+	<select id="findStoreRelation" resultType="com.github.apz.model.store.StoreRelation">
+		SELECT
+			relation_store_id
+		FROM
+			store_x_store
+		WHERE
+			store_id = #{store.storeId}
+	</select>
+
+	<insert id="addStoreRelation">
+		INSERT INTO
+			store_x_store
+		(store_id, relation_store_id)
+		VALUES
+		(#{storeRelation.storeId}, #{storeRelation.relationStoreId})
+	</insert>
+
+	<delete id="purgeStoreRelation">
+		DELETE FROM
+			store_x_store
+		WHERE
+			store_id = #{storeRelation.storeId}
+		AND
+			relation_store_id = #{storeRelation.relationStoreId}
+	</delete>
+</mapper>

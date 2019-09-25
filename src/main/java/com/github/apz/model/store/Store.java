@@ -1,5 +1,8 @@
 package com.github.apz.model.store;
 
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+
 import com.github.apz.model.ChainPackDTO;
 
 import lombok.Getter;
@@ -23,6 +26,14 @@ public class Store extends ChainPackDTO {
 	public static Store of(String storeName) {
 		Store store = new Store();
 		store.setStoreName(storeName);
+		return store;
+	}
+
+	public static Store newStore(String storeName) {
+		Store store = of(storeName);
+		ZonedDateTime now = ZonedDateTime.now(ZoneId.of("Asia/Tokyo"));
+		store.setUpdateTime(now.toLocalDateTime());
+		store.setInsertTime(now.toLocalDateTime());
 		return store;
 	}
 }
