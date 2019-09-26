@@ -13,6 +13,7 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<name>chain</name>
 	<description>chain-pack</description>
+	<packaging>war</packaging>
 
 	<properties>
 		<java.version>1.8</java.version>
@@ -86,6 +87,7 @@
 	</dependencies>
 
 	<build>
+		<finalName>chain-pack</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
@@ -95,7 +97,7 @@
 				<groupId>org.flywaydb</groupId>
 				<artifactId>flyway-maven-plugin</artifactId>
 				<configuration>
-					<url>jdbc:mysql://127.0.0.1:3306/test</url>
+					<url>jdbc:mysql://127.0.0.1:3306/test?serverTimezone=JST</url>
 					<user>root</user>
 					<password>password</password>
 				</configuration>
