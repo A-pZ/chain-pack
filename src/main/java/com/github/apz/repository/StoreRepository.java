@@ -18,11 +18,7 @@ public class StoreRepository {
 
 	public List<Store> findAllStore() {
 		List<Store> result = mapper.findAllStore();
-		return result.stream().map(item -> {
-			item.setUpdateTime(item.getConvertedUpdateTime());
-			item.setInsertTime(item.getConvertedInsertTime());
-			return item;
-		}).collect(Collectors.toList());
+		return result;
 	}
 
 	public void register(Store store) {

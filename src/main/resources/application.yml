@@ -1,7 +1,7 @@
 webjars:
   bootstrap: "4.3.1"
   jquery: "3.4.1"
-spring:  datasource:    url: "jdbc:mysql://127.0.0.1/test"
+spring:  datasource:    url: "jdbc:mysql://127.0.0.1/test?serverTimezone=JST"
     username: "root"
     password: "password"
     driver-class-name: "com.mysql.jdbc.Driver"  flyway:    enabled: false
@@ -14,3 +14,6 @@ mybatis:
 logging:
   level:
     com.github.apz.datasource: TRACE
+server:
+  servlet:
+    context-path: /chain-pack
