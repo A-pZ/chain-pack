@@ -24,9 +24,9 @@
 		SELECT
 			relation_store_id
 		FROM
-			store_x_store
+			store_x_store relation
 		WHERE
-			store_id = #{store.storeId}
+			relation.store_id = #{store.storeId}
 	</select>
 
 	<insert id="addStoreRelation">
@@ -45,4 +45,23 @@
 		AND
 			relation_store_id = #{storeRelation.relationStoreId}
 	</delete>
+
+	<select id="findStore" resultType="com.github.apz.model.store.Store">
+		SELECT
+			store_id
+			, store_name
+			, update_time
+		FROM store
+		WHERE
+			store_id = #{store.storeId}
+	</select>
+
+	<update id="updateStore">
+		UPDATE
+			store
+		SET
+			store_name = #{store.storeName}
+		WHERE
+			store_id = #{store.storeId}
+	</update>
 </mapper>

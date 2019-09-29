@@ -1,6 +1,7 @@
 package com.github.apz.controller;
 
 import java.util.List;
+import java.util.Objects;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
@@ -14,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.github.apz.model.store.Store;
+import com.github.apz.model.store.StoreRelation;
 import com.github.apz.service.store.StoreService;
 
 import lombok.RequiredArgsConstructor;
@@ -45,10 +47,33 @@ public class StoreController {
 	}
 
 	@GetMapping("/relation/{storeId}")
-	public ModelAndView findStoreRelation(ModelAndView mnv, @PathVariable("storeId") Long storeId) {
-		List<Store> relation = service.findStoreRelation(Store.of(storeId));
-		mnv.addObject("relation", relation);
+	public ModelAndView findStoreRelation(ModelAndView mnv, @PathVariable("storeId") Long storeId, RedirectAttributes redirects) {
+		Store store = service.findStore(Store.of(storeId));
+		if (Objects.isNull(store)) {
+			redirects.addFlashAttribute("message", "存在しない店舗コードです");
+			mnv.setViewName("redirect:/store/all");
+			return mnv;
+		}
+		mnv.addObject("store", store);
+
+		List<StoreRelation> relation = service.findStoreRelation(Store.of(storeId));
+		mnv.addObject("relations", relation);
+
 		mnv.setViewName("relation");
 		return mnv;
 	}
+
+	@PostMapping("/{storeId}")
+	public ModelAndView updateStoreName(ModelAndView mnv,
+			@PathVariable("storeId") Long storeId,
+			@RequestParam("storeName") String storeName,
+			RedirectAttributes redirects) {
+
+		service.updateStoreName(Store.of(storeId, storeName));
+
+		redirects.addFlashAttribute("message", "店舗名を更新しました");
+		mnv.setViewName("redirect:/store/relation/" + storeId.toString());
+		return mnv;
+	}
+
 }

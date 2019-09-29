@@ -29,6 +29,13 @@ public class Store extends ChainPackDTO {
 		return store;
 	}
 
+	public static Store of(Long storeId, String storeName) {
+		Store store = new Store();
+		store.setStoreId(storeId);
+		store.setStoreName(storeName);
+		return store;
+	}
+
 	public static Store newStore(String storeName) {
 		Store store = of(storeName);
 		ZonedDateTime now = ZonedDateTime.now(ZoneId.of("Asia/Tokyo"));
