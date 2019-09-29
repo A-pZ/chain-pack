@@ -26,4 +26,12 @@ public class ItemService {
 	public void register(Item item) {
 		repository.register(item);
 	}
+
+	public Item findItem(Item item) {
+		return repository.findItem(item);
+	}
+
+	public void updateItem(Item item) {
+		repository.updateItem(item);
+	}
 }

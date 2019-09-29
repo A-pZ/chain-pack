@@ -40,6 +40,12 @@ public class StoreController {
 
 	@PostMapping("/")
 	public ModelAndView register(ModelAndView mnv, @RequestParam("name") String name, RedirectAttributes redirects) {
+		if (StringUtils.isEmpty(name)) {
+			redirects.addFlashAttribute("message", "拠点名を入力してください");
+			mnv.setViewName("redirect:/store/all");
+			return mnv;
+		}
+
 		service.register(Store.newStore(name));
 		redirects.addFlashAttribute("message", "登録が完了しました");
 		mnv.setViewName("redirect:/store/all");
@@ -50,7 +56,7 @@ public class StoreController {
 	public ModelAndView findStoreRelation(ModelAndView mnv, @PathVariable("storeId") Long storeId, RedirectAttributes redirects) {
 		Store store = service.findStore(Store.of(storeId));
 		if (Objects.isNull(store)) {
-			redirects.addFlashAttribute("message", "存在しない店舗コードです");
+			redirects.addFlashAttribute("message", "存在しない拠点コードです");
 			mnv.setViewName("redirect:/store/all");
 			return mnv;
 		}
@@ -71,7 +77,7 @@ public class StoreController {
 
 		service.updateStoreName(Store.of(storeId, storeName));
 
-		redirects.addFlashAttribute("message", "店舗名を更新しました");
+		redirects.addFlashAttribute("message", "拠点名を更新しました");
 		mnv.setViewName("redirect:/store/relation/" + storeId.toString());
 		return mnv;
 	}

@@ -1,11 +1,6 @@
 package com.github.apz.repository;
 
-import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.time.ZonedDateTime;
 import java.util.List;
-import java.util.stream.Collectors;
-
 import org.springframework.stereotype.Repository;
 
 import com.github.apz.datasource.ItemMapper;
@@ -20,11 +15,18 @@ public class ItemRepository {
 	private final ItemMapper itemMapper;
 
 	public List<Item> findStoreItems(Store store) {
-		List<Item> result = itemMapper.findStoreItems(store);
-		return result;
+		return itemMapper.findStoreItems(store);
 	}
 
 	public void register(Item item) {
 		itemMapper.register(item);
+	}
+
+	public Item findItem(Item item) {
+		return itemMapper.findItem(item);
+	}
+
+	public void updateItem(Item item) {
+		itemMapper.updateItem(item);
 	}
 }

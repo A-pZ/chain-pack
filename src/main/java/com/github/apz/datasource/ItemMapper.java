@@ -14,4 +14,8 @@ public interface ItemMapper {
 	public List<Item> findStoreItems(@Param("store") Store store);
 
 	public void register(@Param("item") Item item);
+
+	public Item findItem(@Param("item") Item item);
+
+	public void updateItem(@Param("item") Item item);
 }

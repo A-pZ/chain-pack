@@ -60,6 +60,40 @@ public class ItemController {
 		return mnv;
 	}
 
+	@GetMapping("/{itemId}")
+	public ModelAndView itemEdit(ModelAndView mnv, @PathVariable("itemId") Long itemId, @ModelAttribute("message") String message) {
+		Item item = service.findItem(Item.of(itemId));
+		if (StringUtils.isEmpty(message)) {
+			message = "商品の詳細を表示します";
+		}
+		mnv.addObject("item", item);
+		mnv.addObject("message", message);
+		mnv.setViewName("itemDetail");
+		return mnv;
+	}
+
+	@PostMapping("/{itemId}")
+	public ModelAndView itemUpdate(ModelAndView mnv, @PathVariable("itemId") Long itemId, @RequestParam("name") String name, @ModelAttribute("message") String message, RedirectAttributes redirects) {
+		if (StringUtils.isEmpty(name)) {
+			redirects.addFlashAttribute("message", "商品名を入力してください");
+			mnv.setViewName("redirect:/item/" + itemId.toString());
+			return mnv;
+		}
+
+		Item item = service.findItem(Item.of(itemId));
+		if (Objects.isNull(item)) {
+			redirects.addFlashAttribute("message", "存在しない商品コードです");
+			mnv.setViewName("redirect:/item/" + itemId.toString());
+			return mnv;
+		}
+
+		service.updateItem(Item.updateItem(itemId, name));
+
+		redirects.addFlashAttribute("message", "商品名の更新が完了しました");
+		mnv.setViewName("redirect:/item/" + itemId.toString());
+		return mnv;
+	}
+
 	@PostMapping("/")
 	public ModelAndView register(@RequestParam("name") String name, ModelAndView mnv, RedirectAttributes redirects) {
 		if (StringUtils.isEmpty(name)) {

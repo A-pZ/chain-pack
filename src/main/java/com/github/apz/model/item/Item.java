@@ -19,11 +19,26 @@ public class Item extends ChainPackDTO {
 		return item;
 	}
 
+	public static Item of(Long itemId) {
+		Item item = new Item();
+		item.setItemId(itemId);
+		return item;
+	}
+
 	public static Item newItem(String name) {
 		Item item = of(name);
 		ZonedDateTime now = ZonedDateTime.now(ZoneId.of("Asia/Tokyo"));
 		item.setUpdateTime(now.toLocalDateTime());
 		item.setInsertTime(now.toLocalDateTime());
+		return item;
+	}
+
+	public static Item updateItem(Long itemId, String name) {
+		Item item = new Item();
+		item.setItemId(itemId);
+		item.setName(name);
+		ZonedDateTime now = ZonedDateTime.now(ZoneId.of("Asia/Tokyo"));
+		item.setUpdateTime(now.toLocalDateTime());
 		return item;
 	}
 }

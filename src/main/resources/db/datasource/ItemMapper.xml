@@ -19,4 +19,23 @@
 		VALUES
 		(#{item.name}, #{item.insertTime}, #{item.updateTime})
 	</insert>
+
+	<select id="findItem" resultType="com.github.apz.model.item.Item">
+		SELECT
+			item_id
+			, name
+		FROM item
+		WHERE
+			item_id = #{item.itemId}
+	</select>
+
+	<update id="updateItem">
+		UPDATE
+			item
+		SET
+			name = #{item.name}
+			, update_time = #{item.updateTime}
+		WHERE
+			item_id = #{item.itemId}
+	</update>
 </mapper>
