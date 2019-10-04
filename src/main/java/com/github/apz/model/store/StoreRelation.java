@@ -25,4 +25,8 @@ public class StoreRelation {
 		return new StoreRelation(storeId, relationStoreId, storeName, relation);
 	}
 
+	public static StoreRelation relation(Long storeId, Long relationStoreId, boolean relation) {
+		return new StoreRelation(storeId, relationStoreId, null, relation);
+	}
+
 }

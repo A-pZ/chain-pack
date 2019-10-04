@@ -38,14 +38,6 @@ public class StoreService {
 		return result;
 	}
 
-	public void addStoreRelation(Store store, Store relationStore) {
-		repository.addStoreRelation(store, relationStore);
-	}
-
-	public void purgeStoreRelation(Store store, Store relationStore) {
-		repository.purgeStoreRelation(store, relationStore);
-	}
-
 	private List<StoreRelation> storeRelationFlagged(Store target, List<Store> stores, List<StoreRelation> relations) {
 		List<StoreRelation> result = new ArrayList<>();
 
@@ -71,4 +63,14 @@ public class StoreService {
 	public void updateStoreName(Store store) {
 		repository.updateStore(store);
 	}
+
+	public void updateStoreRelation(Store store, Store relationStore, boolean relation) {
+		if (relation) {
+			repository.addStoreRelation(store, relationStore);
+		} else {
+			repository.purgeStoreRelation(store, relationStore);
+		}
+	}
+
+
 }

@@ -68,7 +68,9 @@
 				<tbody>
 					<tr th:each="relation: ${relations}">
 						<td th:text="${relation.relationStoreId}"></td>
-						<td th:text="${relation.relation}"></td>
+						<td>
+							<input type="button" class="btn btn-outline-success btn-sm relation-label" th:id="'relation' + ${relation.relationStoreId}" th:value="${relation.relation} ? '連携中' : '未連携'">
+						</td>
 						<td th:text="${relation.storeName}"></td>
 					</tr>
 				</tbody>
@@ -95,12 +97,47 @@
 		th:src="@{/webjars/jquery/{version}/jquery.min.js(version=${@webjarsConfig.jquery})}"></script>
 	<script
 		th:src="@{/webjars/bootstrap/{version}/js/bootstrap.min.js(version=${@webjarsConfig.bootstrap})}"></script>
-	<script>
+	<script th:inline="javascript">
+	/*<![CDATA[*/
 	$(document).ready(function(){
 		$('.toast').toast('show');
+
+		$('input[id^="relation"]').click(function() {
+			var relation = $(this).val() !== '連携中';
+			console.debug(this.id + " " +relation);
+			relationUpdate(this.id, relation);
+		});
 	});
 
+	var relationUpdate = function(relationStoreId, relation) {
+		var url = /*[[ @{/store/{storeId}/relation/(storeId=${store.storeId})} ]]*/;
+		url = url + relationStoreId.substring(8);	// 8=relation
+		console.debug(url);
 
+		$.ajax({
+			url: url,
+			type:'POST',
+			data:{
+				'relation': relation,
+			}
+		})
+		.done((data) => {
+			console.log(data);
+			relationLabel(relationStoreId, relation);
+		})
+		.fail((data) => {
+			console.log(data);
+		})
+		.always((data) => {
+			// NOP
+		});
+	}
+
+	var relationLabel = function(targetId, relation) {
+		var label = relation ? '連携中' : '未連携';
+		$('input[id^="' + targetId + '"]').val(label)
+	}
+	/*]]>*/
 	</script>
 
 </body>

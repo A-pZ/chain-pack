@@ -34,16 +34,16 @@
 			store_x_store
 		(store_id, relation_store_id)
 		VALUES
-		(#{storeRelation.storeId}, #{storeRelation.relationStoreId})
+		(#{store.storeId}, #{relation.storeId})
 	</insert>
 
 	<delete id="purgeStoreRelation">
 		DELETE FROM
 			store_x_store
 		WHERE
-			store_id = #{storeRelation.storeId}
+			store_id = #{store.storeId}
 		AND
-			relation_store_id = #{storeRelation.relationStoreId}
+			relation_store_id = #{relation.storeId}
 	</delete>
 
 	<select id="findStore" resultType="com.github.apz.model.store.Store">

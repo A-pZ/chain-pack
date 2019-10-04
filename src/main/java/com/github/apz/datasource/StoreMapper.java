@@ -17,12 +17,11 @@ public interface StoreMapper {
 
 	public List<StoreRelation> findStoreRelation(@Param("store") Store store);
 
-	public void addStoreRelation(@Param("store") Store store, @Param("relation") Store relationStore);
-
-	public void purgeStoreRelation(@Param("store") Store store, @Param("relation") Store relationStore);
-
 	public Store findStore(@Param("store") Store store);
 
 	public void updateStore(@Param("store") Store store);
 
+	public void addStoreRelation(@Param("store") Store store, @Param("relation") Store relationStore);
+
+	public void purgeStoreRelation(@Param("store") Store store, @Param("relation") Store relationStore);
 }
