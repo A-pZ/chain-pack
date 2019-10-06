@@ -47,11 +47,19 @@ public class ItemService {
 
 		List<ItemStoreDeposit> result = stores.stream().map(store -> {
 			Optional<ItemDeposit> deposit = depositedList.stream()
-					.filter(depositOne -> depositOne.getItemId() == store.getStoreId())
+					.filter(depositOne -> depositOne.getStoreId() == store.getStoreId())
 					.findAny();
 			return ItemStoreDeposit.of(item, store, deposit.isPresent());
 		}).collect(Collectors.toList());
 
 		return result;
+	}
+
+	public void updateItemDeposit(ItemDeposit itemDeposit) {
+		if (itemDeposit.isDeposit()) {
+			repository.addItemDeposit(itemDeposit);
+		} else {
+			repository.purgeItemDeposit(itemDeposit);
+		}
 	}
 }

@@ -70,7 +70,7 @@
 						<td th:text="${deposit.store.storeId}"></td>
 						<td>
 							<input type="button" class="btn btn-outline-primary btn-sm relation-label"
-							  th:id="'deposit' + ${deposit.store.storeId}" th:value="${deposit.deposit} ? '配置済' : '未配置'">
+							  th:id="'deposit' + ${deposit.store.storeId}" th:value="${deposit.deposit} ? #{item.deposit.true} : #{item.deposit.false}">
 						</td>
 						<td th:text="${deposit.store.storeName}"></td>
 					</tr>
@@ -98,10 +98,47 @@
 		th:src="@{/webjars/jquery/{version}/jquery.min.js(version=${@webjarsConfig.jquery})}"></script>
 	<script
 		th:src="@{/webjars/bootstrap/{version}/js/bootstrap.min.js(version=${@webjarsConfig.bootstrap})}"></script>
-	<script>
+	<script th:inline="javascript">
+	/*<![CDATA[*/
 	$(document).ready(function(){
 		$('.toast').toast('show');
+
+		$('input[id^="deposit"]').click(function() {
+			var deposit = $(this).val() !== /*[[ #{item.deposit.true} ]]*/;
+			depositUpdate(this.id, deposit);
+		});
 	});
+
+	var depositUpdate = function(depositItemId, deposit) {
+		var url = /*[[ @{/item/{itemId}/storeId/(itemId=${item.itemId})} ]]*/;
+		url = url + depositItemId.substring(7);	// 7=deposit
+
+		$.ajax({
+			url: url,
+			type:'POST',
+			data:{
+				'deposit': deposit,
+			}
+		})
+		.done((data) => {
+			depositLabel(depositItemId, deposit);
+		})
+		.fail((data) => {
+			//console.log(data);
+		})
+		.always((data) => {
+			// NOP
+		});
+	}
+
+	var depositLabel = function(targetId, deposit) {
+		var DEPOSIT_TRUE = /*[[ #{item.deposit.true} ]]*/;
+		var DEPOSIT_FALSE = /*[[ #{item.deposit.false} ]]*/
+
+		var label = deposit ? DEPOSIT_TRUE : DEPOSIT_FALSE;
+		$('input[id^="' + targetId + '"]').val(label)
+	}
+	/*]]>*/
 	</script>
 
 </body>

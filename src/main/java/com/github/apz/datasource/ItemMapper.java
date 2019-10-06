@@ -21,4 +21,8 @@ public interface ItemMapper {
 	public void updateItem(@Param("item") Item item);
 
 	public List<ItemDeposit> findDeposit(@Param("item") Item item);
+
+	public void addItemDeposit(@Param("itemDeposit") ItemDeposit itemDeposit);
+
+	public void purgeItemDeposit(@Param("itemDeposit") ItemDeposit itemDeposit);
 }

@@ -104,7 +104,6 @@
 
 		$('input[id^="relation"]').click(function() {
 			var relation = $(this).val() !== '連携中';
-			console.debug(this.id + " " +relation);
 			relationUpdate(this.id, relation);
 		});
 	});
@@ -112,7 +111,6 @@
 	var relationUpdate = function(relationStoreId, relation) {
 		var url = /*[[ @{/store/{storeId}/relation/(storeId=${store.storeId})} ]]*/;
 		url = url + relationStoreId.substring(8);	// 8=relation
-		console.debug(url);
 
 		$.ajax({
 			url: url,
@@ -122,11 +120,10 @@
 			}
 		})
 		.done((data) => {
-			console.log(data);
 			relationLabel(relationStoreId, relation);
 		})
 		.fail((data) => {
-			console.log(data);
+			//console.log(data);
 		})
 		.always((data) => {
 			// NOP

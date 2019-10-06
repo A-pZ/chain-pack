@@ -48,4 +48,21 @@
 		where
 			item_id = #{item.itemId}
 	</select>
+
+	<insert id="addItemDeposit">
+		INSERT INTO
+			store_x_item
+		(store_id, item_id)
+		VALUES
+		(#{itemDeposit.storeId}, #{itemDeposit.itemId})
+	</insert>
+
+	<delete id="purgeItemDeposit">
+		DELETE FROM
+			store_x_item
+		WHERE
+			store_id = #{itemDeposit.storeId}
+		AND
+			item_id = #{itemDeposit.itemId}
+	</delete>
 </mapper>

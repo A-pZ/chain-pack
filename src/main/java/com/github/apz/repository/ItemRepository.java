@@ -34,4 +34,12 @@ public class ItemRepository {
 	public List<ItemDeposit> findDeposit(Item item) {
 		return itemMapper.findDeposit(item);
 	}
+
+	public void addItemDeposit(ItemDeposit itemDeposit) {
+		itemMapper.addItemDeposit(itemDeposit);
+	}
+
+	public void purgeItemDeposit(ItemDeposit itemDeposit) {
+		itemMapper.purgeItemDeposit(itemDeposit);
+	}
 }
