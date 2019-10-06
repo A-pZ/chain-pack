@@ -38,4 +38,14 @@
 		WHERE
 			item_id = #{item.itemId}
 	</update>
+
+	<select id="findDeposit" resultType="com.github.apz.model.item.ItemDeposit">
+		SELECT
+			store_id
+			, item_id
+		FROM
+			store_x_item
+		where
+			item_id = #{item.itemId}
+	</select>
 </mapper>

@@ -17,6 +17,8 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.github.apz.model.item.Item;
+import com.github.apz.model.item.ItemDeposit;
+import com.github.apz.model.item.ItemStoreDeposit;
 import com.github.apz.model.store.Store;
 import com.github.apz.service.item.ItemService;
 
@@ -63,14 +65,19 @@ public class ItemController {
 	@GetMapping("/{itemId}")
 	public ModelAndView itemEdit(ModelAndView mnv, @PathVariable("itemId") Long itemId, @ModelAttribute("message") String message) {
 		Item item = service.findItem(Item.of(itemId));
+		mnv.addObject("item", item);
 		if (StringUtils.isEmpty(message)) {
 			message = "商品の詳細を表示します";
 		}
-		mnv.addObject("item", item);
+
+		List<ItemStoreDeposit> deposits = service.findDeposit(Item.of(itemId));
+		mnv.addObject("deposits", deposits);
 		mnv.addObject("message", message);
 		mnv.setViewName("itemDetail");
 		return mnv;
 	}
+
+
 
 	@PostMapping("/{itemId}")
 	public ModelAndView itemUpdate(ModelAndView mnv, @PathVariable("itemId") Long itemId, @RequestParam("name") String name, @ModelAttribute("message") String message, RedirectAttributes redirects) {

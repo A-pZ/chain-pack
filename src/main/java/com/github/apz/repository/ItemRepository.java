@@ -5,6 +5,7 @@ import org.springframework.stereotype.Repository;
 
 import com.github.apz.datasource.ItemMapper;
 import com.github.apz.model.item.Item;
+import com.github.apz.model.item.ItemDeposit;
 import com.github.apz.model.store.Store;
 
 import lombok.RequiredArgsConstructor;
@@ -28,5 +29,9 @@ public class ItemRepository {
 
 	public void updateItem(Item item) {
 		itemMapper.updateItem(item);
+	}
+
+	public List<ItemDeposit> findDeposit(Item item) {
+		return itemMapper.findDeposit(item);
 	}
 }
