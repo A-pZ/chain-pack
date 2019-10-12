@@ -38,6 +38,10 @@ public class StoreService {
 		return result;
 	}
 
+	public List<Store> findStoreRelayed(Store store) {
+		return repository.findStoreRelayed(store);
+	}
+
 	private List<StoreRelation> storeRelationFlagged(Store target, List<Store> stores, List<StoreRelation> relations) {
 		List<StoreRelation> result = new ArrayList<>();
 

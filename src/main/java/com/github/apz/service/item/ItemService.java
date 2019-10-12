@@ -21,12 +21,12 @@ public class ItemService {
 	final ItemRepository repository;
 	final StoreRepository storeRepository;
 
-	public List<Item> findStoreItems(Store store) {
-		return repository.findStoreItems(store);
+	public List<Item> findAllItems() {
+		return repository.findAllItems();
 	}
 
-	public List<Item> findAllItems() {
-		return repository.findStoreItems(Store.blank());
+	public List<Item> findStoreItems(Store store) {
+		return repository.findStoreItems(store);
 	}
 
 	public void register(Item item) {
@@ -61,5 +61,11 @@ public class ItemService {
 		} else {
 			repository.purgeItemDeposit(itemDeposit);
 		}
+	}
+
+	public void transfer(Store store, Item item, Store transferStore) {
+		repository.addItemDeposit(ItemDeposit.of(transferStore.getStoreId(), item.getItemId(), true));
+
+		repository.purgeItemDeposit(ItemDeposit.of(store.getStoreId(), item.getItemId(), true));
 	}
 }

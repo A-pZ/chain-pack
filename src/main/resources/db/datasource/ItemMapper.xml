@@ -1,13 +1,27 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.github.apz.datasource.ItemMapper">
-	<select id="findStoreItems" resultType="com.github.apz.model.item.Item">
+	<select id="findAllItems" resultType="com.github.apz.model.item.Item">
 		SELECT
 			item_id
 			, name
 			, update_time
 		FROM item
 
+		ORDER BY
+			item_id DESC
+	</select>
+
+	<select id="findStoreItems" resultType="com.github.apz.model.item.Item">
+		SELECT
+			item.item_id
+			, name
+			, item.update_time
+		FROM item
+		INNER JOIN store_x_item
+		ON item.item_id = store_x_item.item_id
+		WHERE
+			 store_x_item.store_id = #{store.storeId}
 		ORDER BY
 			item_id DESC
 	</select>
@@ -65,4 +79,5 @@
 		AND
 			item_id = #{itemDeposit.itemId}
 	</delete>
+
 </mapper>

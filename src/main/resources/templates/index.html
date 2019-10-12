@@ -10,7 +10,7 @@
 <link rel="stylesheet" th:href="@{/css/chain-pack.css}" />
 </head>
 <body>
-	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+	<nav class="navbar navbar-expand-lg navbar-dark bg-blue">
 		<a class="navbar-brand" href="#">Chain-Pack</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
 			data-target="#navbarSupportedContent"
@@ -38,11 +38,10 @@
 				</ul>
 			</div>
 			<div class="col title-button">
-				<input type="button" class="btn btn-primary btn-lg btn-block" value="配送画面">
+				<a type="button" href="#" th:href="@{/transfer/stores}" class="btn btn-primary btn-lg btn-block">配送画面</a>
 				<h2>商品を配送します</h2>
 				<ul>
 					<li>拠点から別の拠点への配送をします。</li>
-					<li>未配送の商品を拠点へ配置できます。</li>
 					<li>複数拠点を参照できる担当者は、担当拠点を選びます。</li>
 				</ul>
 			</div>

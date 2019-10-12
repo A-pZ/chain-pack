@@ -122,11 +122,11 @@ public class ItemController {
 
 	private List<Item> findStoreItems(String storeName, Long storeId) {
 		if (StringUtils.isNotEmpty(storeName)) {
-			return service.findStoreItems(Store.of(storeName));
+			return service.findAllItems();
 		}
 
 		if (!Objects.isNull(storeId)) {
-			return service.findStoreItems(Store.of(storeId));
+			return service.findAllItems();
 		}
 
 		return Collections.emptyList();

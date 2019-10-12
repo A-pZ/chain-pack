@@ -15,6 +15,10 @@ import lombok.RequiredArgsConstructor;
 public class ItemRepository {
 	private final ItemMapper itemMapper;
 
+	public List<Item> findAllItems() {
+		return itemMapper.findAllItems();
+	}
+
 	public List<Item> findStoreItems(Store store) {
 		return itemMapper.findStoreItems(store);
 	}

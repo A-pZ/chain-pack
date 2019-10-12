@@ -12,6 +12,8 @@ import com.github.apz.model.store.Store;
 @Mapper
 public interface ItemMapper {
 
+	public List<Item> findAllItems();
+
 	public List<Item> findStoreItems(@Param("store") Store store);
 
 	public void register(@Param("item") Item item);
@@ -25,4 +27,5 @@ public interface ItemMapper {
 	public void addItemDeposit(@Param("itemDeposit") ItemDeposit itemDeposit);
 
 	public void purgeItemDeposit(@Param("itemDeposit") ItemDeposit itemDeposit);
+
 }

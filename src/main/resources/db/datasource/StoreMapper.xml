@@ -12,6 +12,22 @@
 			store_id DESC
 	</select>
 
+	<select id="findStoreRelayed" resultType="com.github.apz.model.store.Store">
+		SELECT
+			store_id
+			, store_name
+		FROM
+			store
+		WHERE store_id IN (
+			SELECT
+				store_x_store.relation_store_id
+			FROM
+				store_x_store
+			WHERE
+				store_x_store.store_id = #{store.storeId}
+			)
+	</select>
+
 	<insert id="register">
 		INSERT INTO
 			store

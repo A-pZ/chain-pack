@@ -24,4 +24,6 @@ public interface StoreMapper {
 	public void addStoreRelation(@Param("store") Store store, @Param("relation") Store relationStore);
 
 	public void purgeStoreRelation(@Param("store") Store store, @Param("relation") Store relationStore);
+
+	public List<Store> findStoreRelayed(@Param("store") Store store);
 }

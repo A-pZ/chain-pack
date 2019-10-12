@@ -44,4 +44,8 @@ public class StoreRepository {
 	public void updateStore(Store store) {
 		mapper.updateStore(store);
 	}
+
+	public List<Store> findStoreRelayed(Store store) {
+		return mapper.findStoreRelayed(store);
+	}
 }
