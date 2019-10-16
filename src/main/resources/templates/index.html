@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<title>Title</title>
+<link rel="stylesheet"
+	th:href="@{/webjars/bootstrap/{version}/css/bootstrap.min.css(version=${@webjarsConfig.bootstrap})}" />
+<link rel="stylesheet" th:href="@{/css/chain-pack.css}" />
+</head>
+<body>
+	<nav class="navbar navbar-expand-lg navbar-dark bg-blue">
+		<a class="navbar-brand" href="#">Chain-Pack</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse"
+			data-target="#navbarSupportedContent"
+			aria-controls="navbarSupportedContent" aria-expanded="false"
+			aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item active"><a class="nav-link" href="#">Home
+						<span class="sr-only">(current)</span>
+				</a></li>
+			</ul>
+		</div>
+	</nav>
+	<div class="container">
+		<div class="row">
+			<div class="col title-button">
+				<a type="button" href="#" th:href="@{/item/all}" class="btn btn-success btn-lg btn-block">商品管理</a>
+				<h2>商品の検索と登録をします</h2>
+				<ul>
+					<li>商品一覧を表示します。</li>
+					<li>商品を新規登録できます。</li>
+				</ul>
+			</div>
+			<div class="col title-button">
+				<a type="button" href="#" th:href="@{/transfer/stores}" class="btn btn-primary btn-lg btn-block">配送画面</a>
+				<h2>商品を配送します</h2>
+				<ul>
+					<li>拠点から別の拠点への配送をします。</li>
+					<li>複数拠点を参照できる担当者は、担当拠点を選びます。</li>
+				</ul>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col title-button">
+				<a type="button" href="#" th:href="@{/store/all}" class="btn btn-warning btn-lg btn-block">拠点管理</a>
+				<h2>配送拠点を登録・編集します</h2>
+				<ul>
+					<li>拠点一覧を表示します。</li>
+					<li>拠点から配送できる別の拠点を関連付けします。</li>
+				</ul>
+			</div>
+			<div class="col title-button">
+				<input type="button" class="btn btn-dark btn-lg btn-block" value="操作ログ">
+				<h2>全ての操作履歴を表示します</h2>
+				<ul>
+					<li>全拠点の配送状況を全て表示します。</li>
+					<li>署名検証で不整合があった場合は、そのエラーを表示します。</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<script
+		th:src="@{/webjars/jquery/{version}/jquery.min.js(version=${@webjarsConfig.jquery})}"></script>
+	<script
+		th:src="@{/webjars/bootstrap/{version}/js/bootstrap.min.js(version=${@webjarsConfig.bootstrap})}"></script>
+</body>
+</html>
