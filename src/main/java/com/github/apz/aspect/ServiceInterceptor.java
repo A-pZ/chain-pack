@@ -5,14 +5,12 @@ import java.util.Arrays;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Before;
 import org.springframework.stereotype.Component;
 
 import com.github.apz.annotation.DataModify;
 import com.github.apz.model.item.Item;
 import com.github.apz.model.operation.OperationType;
 import com.github.apz.model.store.Store;
-import com.github.apz.model.store.StoreRelation;
 import com.github.apz.service.operation.OperationRecorderService;
 
 import lombok.RequiredArgsConstructor;
@@ -26,7 +24,7 @@ public class ServiceInterceptor {
 
 	private final OperationRecorderService recordService;
 
-	@After("execution(* com.github.apz.service.*Service.*(..)) && @annotation(annotation)")
+	@After("execution(* com.github.apz.service.*.*Service.*(..)) && @annotation(annotation)")
     public void dataModifyBefore(JoinPoint joinpoint, DataModify annotation) {
 		log.info("aop-before: {}" , joinpoint.getSignature());
 		Object[] args = joinpoint.getArgs();
