@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 
 import com.github.apz.annotation.DataModify;
 import com.github.apz.model.item.Item;
+import com.github.apz.model.item.ItemDeposit;
 import com.github.apz.model.operation.OperationType;
 import com.github.apz.model.store.Store;
 import com.github.apz.service.operation.OperationRecorderService;
@@ -31,8 +32,8 @@ public class ServiceInterceptor {
 
 		OperationType operationType = annotation.value();
 
-		if (operationType == OperationType.DEPOSIT) {
-			deposit(args);
+		if (operationType == OperationType.TRANSFER) {
+			transfer(args);
 			return;
 		}
 
@@ -41,6 +42,8 @@ public class ServiceInterceptor {
 				item((Item)arg, operationType);
 			} else if (arg instanceof Store) {
 				store((Store)arg, operationType);
+			} else if (arg instanceof ItemDeposit) {
+				deposit((ItemDeposit)arg);
 			}
 		});
     }
@@ -57,13 +60,19 @@ public class ServiceInterceptor {
 		recordService.store(store, operationType);
 	}
 
-	private void deposit(Object[] args) {
+	private void deposit(ItemDeposit itemDeposit) {
+		log.info("deposit : [{}] store {} , item {}", itemDeposit.isDeposit(), itemDeposit.getStoreId(), itemDeposit.getItemId());
+
+		recordService.deposit(itemDeposit);
+	}
+
+	private void transfer(Object[] args) {
 		Store store = (Store)args[0];
 		Item item = (Item)args[1];
 		Store transferStore = (Store)args[2];
 
-		log.info("deposit : store {} -> {}, item {}" , store.getStoreId(), transferStore.getStoreId(), item.getItemId());
+		log.info("transfer : store {} -> {}, item {}" , store.getStoreId(), transferStore.getStoreId(), item.getItemId());
 
-		recordService.deposit(store, item, transferStore);
+		recordService.transfer(store, item, transferStore);
 	}
 }

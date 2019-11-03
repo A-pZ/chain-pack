@@ -61,7 +61,7 @@ public class ItemService {
 		return result;
 	}
 
-	@DataModify(OperationType.UPDATE)
+	@DataModify(OperationType.DEPOSIT)
 	public void updateItemDeposit(ItemDeposit itemDeposit) {
 		if (itemDeposit.isDeposit()) {
 			repository.addItemDeposit(itemDeposit);
@@ -70,7 +70,7 @@ public class ItemService {
 		}
 	}
 
-	@DataModify(OperationType.DEPOSIT)
+	@DataModify(OperationType.TRANSFER)
 	public void transfer(Store store, Item item, Store transferStore) {
 		repository.addItemDeposit(ItemDeposit.of(transferStore.getStoreId(), item.getItemId(), true));
 

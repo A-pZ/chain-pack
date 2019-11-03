@@ -13,4 +13,6 @@ public interface OperationMapper {
 	public void recordStoreOperation(Store store, OperationType type, String hashCode);
 
 	public void recordItemDeposit(Store store, Item item, OperationType type, String hashCode);
+
+	public void recordItemTransfer(Store store, Item item, OperationType type, String hashCode);
 }

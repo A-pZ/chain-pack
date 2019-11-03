@@ -34,4 +34,10 @@ public class OperationRecorderRepository {
 
 		mapper.recordItemDeposit(store, item, operationType, hashCode);
 	}
+
+	public void transfer(Store store, Item item, OperationType operationType) {
+		String hashCode = logModel.hash(store, item, operationType.name());
+
+		mapper.recordItemTransfer(store, item, operationType, hashCode);
+	}
 }

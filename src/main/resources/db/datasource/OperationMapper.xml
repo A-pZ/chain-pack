@@ -24,4 +24,12 @@
 		VALUES
 		('deposit', #{item.itemId}, #{store.storeId}, #{type.name}, #{hashCode})
 	</insert>
+
+	<insert id="recordItemTransfer">
+		INSERT INTO
+			operation_log
+		(model, item_id, store_id, operation_type, hash_code)
+		VALUES
+		('transter', #{item.itemId}, #{store.storeId}, #{type.name}, #{hashCode})
+	</insert>
 </mapper>
