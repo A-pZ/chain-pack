@@ -20,7 +20,7 @@ import org.springframework.stereotype.Component;
  *
  */
 @Component
-public class OperationLog {
+public class OperationLogHash {
 	@Value("${chain-pack.signature.seed}")
 	private String seed;
 

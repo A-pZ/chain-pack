@@ -1,10 +1,10 @@
-package com.github.apz.repository.operation;
+package com.github.apz.repository;
 
 import org.springframework.stereotype.Repository;
 
 import com.github.apz.datasource.OperationMapper;
 import com.github.apz.model.item.Item;
-import com.github.apz.model.operation.OperationLog;
+import com.github.apz.model.operation.OperationLogHash;
 import com.github.apz.model.operation.OperationType;
 import com.github.apz.model.store.Store;
 
@@ -12,10 +12,10 @@ import lombok.RequiredArgsConstructor;
 
 @Repository
 @RequiredArgsConstructor
-public class OperationRecorderRepository {
+public class OperationRepository {
 
 	private final OperationMapper mapper;
-	private final OperationLog logModel;
+	private final OperationLogHash logModel;
 
 	public void item(Item item, OperationType operationType) {
 		String hashCode = logModel.hash(item, operationType.name());

@@ -6,7 +6,7 @@ import com.github.apz.model.item.Item;
 import com.github.apz.model.item.ItemDeposit;
 import com.github.apz.model.operation.OperationType;
 import com.github.apz.model.store.Store;
-import com.github.apz.repository.operation.OperationRecorderRepository;
+import com.github.apz.repository.OperationRepository;
 
 import lombok.RequiredArgsConstructor;
 
@@ -14,7 +14,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class OperationRecorderService {
 
-	final OperationRecorderRepository repository;
+	final OperationRepository repository;
 
 	public void item(Item item, OperationType operationType) {
 		repository.item(item, operationType);
