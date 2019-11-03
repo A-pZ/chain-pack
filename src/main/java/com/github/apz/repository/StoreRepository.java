@@ -4,9 +4,11 @@ import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
+import com.github.apz.annotation.DataModify;
 import com.github.apz.datasource.StoreMapper;
 import com.github.apz.model.store.Store;
 import com.github.apz.model.store.StoreRelation;
+import com.github.apz.model.operation.OperationType;
 
 import lombok.RequiredArgsConstructor;
 
@@ -21,6 +23,7 @@ public class StoreRepository {
 		return result;
 	}
 
+	@DataModify(OperationType.INSERT)
 	public void register(Store store) {
 		mapper.register(store);
 	}
@@ -29,10 +32,12 @@ public class StoreRepository {
 		return mapper.findStoreRelation(store);
 	}
 
+	@DataModify(OperationType.INSERT)
 	public void addStoreRelation(Store store, Store relationStore) {
 		mapper.addStoreRelation(store, relationStore);
 	}
 
+	@DataModify(OperationType.DELETE)
 	public void purgeStoreRelation(Store store, Store relationStore) {
 		mapper.purgeStoreRelation(store, relationStore);
 	}
@@ -41,6 +46,7 @@ public class StoreRepository {
 		return mapper.findStore(store);
 	}
 
+	@DataModify(OperationType.UPDATE)
 	public void updateStore(Store store) {
 		mapper.updateStore(store);
 	}

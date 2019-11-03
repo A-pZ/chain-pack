@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.github.apz.datasource.OperationMapper">
+	<insert id="recordItemOperation">
+		INSERT INTO
+			operation_log
+		(type, item_id, store_id, operation_type, hash_code)
+		VALUES
+		('item', #{item.itemId}, null, #{type}, #{hash_code})
+	</insert>
+
+	<insert id="recordStoreOperation">
+		INSERT INTO
+			operation_log
+		(type, item_id, store_id, operation_type, hash_code)
+		VALUES
+		('store', null, #{store.storeId}, #{type}, #{hash_code})
+	</insert>
+
+	<insert id="recordItemDeposit">
+		INSERT INTO
+			operation_log
+		(type, item_id, store_id, operation_type, hash_code)
+		VALUES
+		('deposit', #{item.itemId}, #{store.storeId}, #{type}, #{hash_code})
+	</insert>
+</mapper>

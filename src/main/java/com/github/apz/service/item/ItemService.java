@@ -6,12 +6,15 @@ import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
+import com.github.apz.annotation.DataModify;
 import com.github.apz.model.item.Item;
 import com.github.apz.model.item.ItemDeposit;
 import com.github.apz.model.item.ItemStoreDeposit;
+import com.github.apz.model.operation.OperationType;
 import com.github.apz.model.store.Store;
 import com.github.apz.repository.ItemRepository;
 import com.github.apz.repository.StoreRepository;
+import com.github.apz.service.operation.OperationRecorderService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -20,6 +23,7 @@ import lombok.RequiredArgsConstructor;
 public class ItemService {
 	final ItemRepository repository;
 	final StoreRepository storeRepository;
+	final OperationRecorderService recordService;
 
 	public List<Item> findAllItems() {
 		return repository.findAllItems();
@@ -29,6 +33,7 @@ public class ItemService {
 		return repository.findStoreItems(store);
 	}
 
+	@DataModify(OperationType.INSERT)
 	public void register(Item item) {
 		repository.register(item);
 	}
@@ -37,6 +42,7 @@ public class ItemService {
 		return repository.findItem(item);
 	}
 
+	@DataModify(OperationType.UPDATE)
 	public void updateItem(Item item) {
 		repository.updateItem(item);
 	}
@@ -55,6 +61,7 @@ public class ItemService {
 		return result;
 	}
 
+	@DataModify(OperationType.UPDATE)
 	public void updateItemDeposit(ItemDeposit itemDeposit) {
 		if (itemDeposit.isDeposit()) {
 			repository.addItemDeposit(itemDeposit);
@@ -63,6 +70,7 @@ public class ItemService {
 		}
 	}
 
+	@DataModify(OperationType.DEPOSIT)
 	public void transfer(Store store, Item item, Store transferStore) {
 		repository.addItemDeposit(ItemDeposit.of(transferStore.getStoreId(), item.getItemId(), true));
 

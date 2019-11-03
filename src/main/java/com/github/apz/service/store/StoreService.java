@@ -6,6 +6,8 @@ import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
+import com.github.apz.annotation.DataModify;
+import com.github.apz.model.operation.OperationType;
 import com.github.apz.model.store.Store;
 import com.github.apz.model.store.StoreRelation;
 import com.github.apz.repository.StoreRepository;
@@ -24,6 +26,7 @@ public class StoreService {
 		return stores;
 	}
 
+	@DataModify(OperationType.INSERT)
 	public void register(Store store) {
 		repository.register(store);
 	}
@@ -64,6 +67,7 @@ public class StoreService {
 		return repository.findStore(store);
 	}
 
+	@DataModify(OperationType.UPDATE)
 	public void updateStoreName(Store store) {
 		repository.updateStore(store);
 	}
