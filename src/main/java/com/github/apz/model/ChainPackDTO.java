@@ -1,5 +1,6 @@
 package com.github.apz.model;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
@@ -9,7 +10,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Getter @Setter
-public abstract class ChainPackDTO {
+public abstract class ChainPackDTO implements Serializable {
 	private LocalDateTime insertTime;
 	private LocalDateTime updateTime;
 

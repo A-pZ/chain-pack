@@ -24,5 +24,8 @@ cloud:
       endpoint: "${cloud.pubsub.baseurl}/topics/item-transfer-topic:publish"
     subscribe:
       endpoint: "${cloud.pubsub.baseurl}/subscriptions/item-transfer-subscriber"
-      
+chain-pack:
+  signature:
+    seed: capybara
+
   
