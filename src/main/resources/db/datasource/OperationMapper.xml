@@ -32,4 +32,25 @@
 		VALUES
 		('transter', #{item.itemId}, #{store.storeId}, #{type.name}, #{hashCode})
 	</insert>
+
+	<select id="find" resultType="com.github.apz.model.operation.OperationLog">
+		SELECT
+			id
+			, UPPER(model) model
+			, item_id
+			, store_id
+			, UPPER(operation_type) `type`
+			, hash_code
+		FROM
+			operation_log
+		<where>
+			<if test="item != null">
+			item_id = #{item.itemId}
+			</if>
+			<if test="store != null">
+			store_id = #{store.storeId}
+			</if>
+		</where>
+		ORDER BY id DESC
+	</select>
 </mapper>

@@ -1,9 +1,12 @@
 package com.github.apz.repository;
 
+import java.util.List;
+
 import org.springframework.stereotype.Repository;
 
 import com.github.apz.datasource.OperationMapper;
 import com.github.apz.model.item.Item;
+import com.github.apz.model.operation.OperationLog;
 import com.github.apz.model.operation.OperationLogHash;
 import com.github.apz.model.operation.OperationType;
 import com.github.apz.model.store.Store;
@@ -39,5 +42,24 @@ public class OperationRepository {
 		String hashCode = logModel.hash(store, item, operationType.name());
 
 		mapper.recordItemTransfer(store, item, operationType, hashCode);
+	}
+
+	public List<OperationLog> findOperationLog() {
+		return mapper.find(null, null);
+	}
+
+	public List<OperationLog> findOperationLog(Store store) {
+		// TODO 自動生成されたメソッド・スタブ
+		return mapper.find(store, null);
+	}
+
+	public List<OperationLog> findOperationLog(Item item) {
+		// TODO 自動生成されたメソッド・スタブ
+		return mapper.find(null, item);
+	}
+
+	public List<OperationLog> findOperationLog(Store store, Item item) {
+		// TODO 自動生成されたメソッド・スタブ
+		return mapper.find(store, item);
 	}
 }
