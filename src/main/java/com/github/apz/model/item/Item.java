@@ -25,6 +25,14 @@ public class Item extends ChainPackDTO {
 		return item;
 	}
 
+	public static Item blank() {
+		return new Item();
+	}
+
+	public boolean exist() {
+		return itemId != null;
+	}
+
 	public static Item newItem(String name) {
 		Item item = of(name);
 		ZonedDateTime now = ZonedDateTime.now(ZoneId.of("Asia/Tokyo"));

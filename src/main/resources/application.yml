@@ -17,3 +17,15 @@ logging:
 server:
   servlet:
     context-path: /chain-pack
+cloud:
+  pubsub:
+    baseurl: "https://pubsub.googleapis.com/v1/projects/chain-pack"
+    topic:
+      endpoint: "${cloud.pubsub.baseurl}/topics/item-transfer-topic:publish"
+    subscribe:
+      endpoint: "${cloud.pubsub.baseurl}/subscriptions/item-transfer-subscriber"
+chain-pack:
+  signature:
+    seed: capybara
+
+  

@@ -77,8 +77,6 @@ public class ItemController {
 		return mnv;
 	}
 
-
-
 	@PostMapping("/{itemId}")
 	public ModelAndView itemUpdate(ModelAndView mnv, @PathVariable("itemId") Long itemId, @RequestParam("name") String name, @ModelAttribute("message") String message, RedirectAttributes redirects) {
 		if (StringUtils.isEmpty(name)) {
