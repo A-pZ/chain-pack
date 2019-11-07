@@ -44,11 +44,11 @@
 		FROM
 			operation_log
 		<where>
-			<if test="item != null">
-			item_id = #{item.itemId}
+			<if test="item != null &amp;&amp; item.itemId != null">
+			AND item_id = #{item.itemId}
 			</if>
-			<if test="store != null">
-			store_id = #{store.storeId}
+			<if test="store != null &amp;&amp; store.storeId != null">
+			AND store_id = #{store.storeId}
 			</if>
 		</where>
 		ORDER BY id DESC

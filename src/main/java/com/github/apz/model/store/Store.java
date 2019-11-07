@@ -36,6 +36,10 @@ public class Store extends ChainPackDTO {
 		return store;
 	}
 
+	public boolean exist() {
+		return storeId != null;
+	}
+
 	public static Store newStore(String storeName) {
 		Store store = of(storeName);
 		ZonedDateTime now = ZonedDateTime.now(ZoneId.of("Asia/Tokyo"));

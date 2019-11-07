@@ -20,15 +20,16 @@ public class OperationSearchService {
 		return operationRepository.findOperationLog();
 	}
 
+	public List<OperationLog> finsStoreOperationLog(Store store, Item item) {
+		return operationRepository.findOperationLog(store, item);
+	}
+
+
 	public List<OperationLog> findStoreOperationLog(Store store) {
 		return operationRepository.findOperationLog(store);
 	}
 
 	public List<OperationLog> findStoreOperationLog(Item item) {
 		return operationRepository.findOperationLog(item);
-	}
-
-	public List<OperationLog> finsStoreOperationLog(Store store, Item item) {
-		return operationRepository.findOperationLog(store, item);
 	}
 }

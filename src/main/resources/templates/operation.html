@@ -44,12 +44,18 @@
 			</div>
 		</div>
 		<hr />
-		<form class="form-inline" action="#" method="post" th:action="@{/item/}">
+		<form class="form-inline" action="#" method="get" th:action="@{/operation/select}">
 			<div class="form-group">
-				<label for="registerItemName">新登録する商品名</label>
-				<input type="text" id="registerItemName" name="name" class="form-control mx-sm-3 required" aria-describedby="helpItemInline">
-				<small id="helpItemInline" class="text-muted">登録する商品名を入力します。</small>
-				<button type="submit" class="btn btn-primary form-control">登録する</button>
+				<label for="store">拠点</label>
+				<select class="custom-select custom-select-sm" name="store" id="store">
+					<option th:each="store : ${stores}" th:value="${store.storeId}" th:selected="${store.storeId == selectStore.storeId}" th:inline="text">[[${store.storeId}]] [[${store.storeName}]]</option>
+				</select>
+				<label for="item">商品</label>
+				<select class="custom-select custom-select-sm" name="item" id="item">
+					<option th:each="item : ${items}" th:value="${item.itemId}" th:selected="${item.itemId == selectItem.itemId}" th:inline="text">[[${item.itemId}]] [[${item.name}]]</option>
+				</select>
+
+				<button type="submit" class="btn btn-primary form-control">絞り込む</button>
 			</div>
 		</form>
 		<hr />
@@ -68,11 +74,11 @@
 				<tbody>
 					<tr th:each="operation : ${operations}">
 						<td th:text="${operation.id}" />
-						<td th:text="${operation.model}" />
+						<td th:text="${operation.model.name}" />
 						<td th:text="${operation.itemId}" />
 						<td th:text="${operation.storeId}" />
-						<td th:text="${operation.type}" />
-						<td th:text="${operation.hashCode}" />
+						<td th:text="${operation.type.methodName}" />
+						<td><span class="btn btn-success">✔</span>[[ ${operation.hashCode} ]]</td>
 					</tr>
 				</tbody>
 			</table>

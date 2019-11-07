@@ -49,17 +49,14 @@ public class OperationRepository {
 	}
 
 	public List<OperationLog> findOperationLog(Store store) {
-		// TODO 自動生成されたメソッド・スタブ
 		return mapper.find(store, null);
 	}
 
 	public List<OperationLog> findOperationLog(Item item) {
-		// TODO 自動生成されたメソッド・スタブ
 		return mapper.find(null, item);
 	}
 
 	public List<OperationLog> findOperationLog(Store store, Item item) {
-		// TODO 自動生成されたメソッド・スタブ
 		return mapper.find(store, item);
 	}
 }
