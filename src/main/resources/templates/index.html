@@ -24,6 +24,11 @@
 				<li class="nav-item active"><a class="nav-link" href="#">Home
 						<span class="sr-only">(current)</span>
 				</a></li>
+				<li class="nav-item"><a class="nav-link" href="#" th:href="@{/item/all}">商品管理</a></li>
+				<li class="nav-item"><a class="nav-link" href="#" th:href="@{/store/all}">拠点管理</a></li>
+				<li class="nav-item"><a class="nav-link" href="#" th:href="@{/transfer/stores}">配送画面</a></li>
+				<li class="nav-item"><a class="nav-link" href="#" th:href="@{/operation/all}">操作ログ</a></li>
+				<li class="nav-item"><a class="nav-link" href="#" th:href="@{/maintenance/}">データメンテナンス</a></li>
 			</ul>
 		</div>
 	</nav>
@@ -62,6 +67,18 @@
 					<li>拠点別・商品別の配送状況を全て表示します。</li>
 					<li>署名検証で不整合があった場合は、そのエラーを表示します。</li>
 				</ul>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col title-button">
+				<a type="button" href="#" th:href="@{/maintenance/}" class="btn btn-secondary btn-lg btn-block">データメンテナンス</a>
+				<h2>データの洗い替えをします</h2>
+				<ul>
+					<li>操作ログの消去をします</li>
+					<li>不要になった拠点・商品・関連付けを削除します</li>
+				</ul>
+			</div>
+			<div class="col title-button">
 			</div>
 		</div>
 	</div>
