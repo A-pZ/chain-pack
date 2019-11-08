@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.github.apz.datasource.MaintenanceMapper">
+	<delete id="deleteItemDeposit">
+		DELETE FROM
+			store_x_item
+	</delete>
+
+	<delete id="deleteStoreRelation">
+		DELETE FROM
+			store_x_store
+	</delete>
+
+	<delete id="deleteOperationLog">
+		DELETE FROM
+			operation_log
+	</delete>
+
+	<delete id="deleteAllItem">
+		DELETE FROM
+			item
+	</delete>
+
+	<delete id="deleteAllStore">
+		DELETE FROM
+			store
+	</delete>
+</mapper>
