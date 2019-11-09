@@ -30,7 +30,7 @@
 			operation_log
 		(model, item_id, store_id, operation_type, hash_code)
 		VALUES
-		('transter', #{item.itemId}, #{store.storeId}, #{type.name}, #{hashCode})
+		('transfer', #{item.itemId}, #{store.storeId}, #{type.name}, #{hashCode})
 	</insert>
 
 	<select id="find" resultType="com.github.apz.model.operation.OperationLog">
