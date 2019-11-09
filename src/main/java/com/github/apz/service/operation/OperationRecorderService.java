@@ -37,4 +37,8 @@ public class OperationRecorderService {
 
 		repository.transfer(transferStore, item, OperationType.INSERT);
 	}
+
+	public Long lastInsertId() {
+		return repository.lastInsertId();
+	}
 }

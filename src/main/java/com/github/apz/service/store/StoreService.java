@@ -11,6 +11,7 @@ import com.github.apz.model.operation.OperationType;
 import com.github.apz.model.store.Store;
 import com.github.apz.model.store.StoreRelation;
 import com.github.apz.repository.StoreRepository;
+import com.github.apz.service.operation.OperationRecorderService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -19,6 +20,7 @@ import lombok.RequiredArgsConstructor;
 public class StoreService {
 
 	final StoreRepository repository;
+	final OperationRecorderService operationService;
 
 	public List<Store> findAllStore() {
 		List<Store> stores = repository.findAllStore();
@@ -29,6 +31,9 @@ public class StoreService {
 	@DataModify(OperationType.INSERT)
 	public void register(Store store) {
 		repository.register(store);
+
+		Long id = operationService.lastInsertId();
+		store.setStoreId(id);
 	}
 
 	public List<StoreRelation> findStoreRelation(Store store) {

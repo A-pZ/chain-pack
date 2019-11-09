@@ -59,4 +59,8 @@ public class OperationRepository {
 	public List<OperationLog> findOperationLog(Store store, Item item) {
 		return mapper.find(store, item);
 	}
+
+	public Long lastInsertId() {
+		return mapper.lastInsertId();
+	}
 }
