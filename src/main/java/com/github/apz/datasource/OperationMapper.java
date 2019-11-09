@@ -20,4 +20,6 @@ public interface OperationMapper {
 	public void recordItemTransfer(Store store, Item item, OperationType type, String hashCode);
 
 	public List<OperationLog> find(Store store, Item item);
+
+	public Long lastInsertId();
 }

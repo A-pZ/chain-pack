@@ -53,4 +53,8 @@
 		</where>
 		ORDER BY id DESC
 	</select>
+
+	<select id="lastInsertId" resultType="long">
+		select last_insert_id()
+	</select>
 </mapper>

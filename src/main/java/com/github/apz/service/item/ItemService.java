@@ -36,6 +36,9 @@ public class ItemService {
 	@DataModify(OperationType.INSERT)
 	public void register(Item item) {
 		repository.register(item);
+
+		Long id = recordService.lastInsertId();
+		item.setItemId(id);
 	}
 
 	public Item findItem(Item item) {
