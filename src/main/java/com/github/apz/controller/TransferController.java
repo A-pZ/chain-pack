@@ -15,7 +15,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.github.apz.model.item.Item;
 import com.github.apz.model.store.Store;
-import com.github.apz.model.store.StoreRelation;
 import com.github.apz.service.item.ItemService;
 import com.github.apz.service.store.StoreService;
 

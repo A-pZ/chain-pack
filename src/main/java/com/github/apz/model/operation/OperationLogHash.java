@@ -6,7 +6,6 @@ package com.github.apz.model.operation;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
-import java.security.MessageDigest;
 import java.util.Arrays;
 import java.util.Base64;
 import java.util.stream.Collectors;
