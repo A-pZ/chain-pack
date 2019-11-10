@@ -69,7 +69,7 @@
 					<tr th:each="deposit: ${deposits}">
 						<td th:text="${deposit.store.storeId}"></td>
 						<td>
-							<input type="button" class="btn btn-outline-primary btn-sm relation-label"
+							<input type="button" class="btn btn-sm relation-label"
 							  th:id="'deposit' + ${deposit.store.storeId}" th:value="${deposit.deposit} ? #{item.deposit.true} : #{item.deposit.false}">
 						</td>
 						<td th:text="${deposit.store.storeName}"></td>
@@ -107,6 +107,11 @@
 			var deposit = $(this).val() !== /*[[ #{item.deposit.true} ]]*/;
 			depositUpdate(this.id, deposit);
 		});
+
+		$('input[id^="deposit"]').each(function(index, element) {
+			var deposit = $(element).val() === /*[[ #{item.deposit.true} ]]*/;
+			depositLabel(element.id, deposit);
+		});
 	});
 
 	var depositUpdate = function(depositItemId, deposit) {
@@ -136,7 +141,13 @@
 		var DEPOSIT_FALSE = /*[[ #{item.deposit.false} ]]*/
 
 		var label = deposit ? DEPOSIT_TRUE : DEPOSIT_FALSE;
-		$('input[id^="' + targetId + '"]').val(label)
+		$('input[id="' + targetId + '"]').val(label);
+
+		if (deposit) {
+			$('input[id="' + targetId + '"]').addClass('btn-primary').removeClass('btn-outline-primary');
+		} else {
+			$('input[id="' + targetId + '"]').addClass('btn-outline-primary').removeClass('btn-primary');
+		}
 	}
 	/*]]>*/
 	</script>

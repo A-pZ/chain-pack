@@ -69,7 +69,7 @@
 					<tr th:each="relation: ${relations}">
 						<td th:text="${relation.relationStoreId}"></td>
 						<td>
-							<input type="button" class="btn btn-outline-success btn-sm relation-label" th:id="'relation' + ${relation.relationStoreId}" th:value="${relation.relation} ? '連携中' : '未連携'">
+							<input type="button" class="btn btn-sm relation-label" th:id="'relation' + ${relation.relationStoreId}" th:value="${relation.relation} ? '連携中' : '未連携'">
 						</td>
 						<td th:text="${relation.storeName}"></td>
 					</tr>
@@ -103,9 +103,15 @@
 		$('.toast').toast('show');
 
 		$('input[id^="relation"]').click(function() {
-			var relation = $(this).val() !== '連携中';
+			var relation = $(this).val() !== /*[[ #{store.relation.true} ]]*/;
 			relationUpdate(this.id, relation);
 		});
+
+		$('input[id^="relation"]').each(function(index, element) {
+			var relation = $(element).val() === /*[[ #{store.relation.true} ]]*/;
+			relationLabel(element.id, relation);
+		});
+
 	});
 
 	var relationUpdate = function(relationStoreId, relation) {
@@ -131,8 +137,17 @@
 	}
 
 	var relationLabel = function(targetId, relation) {
-		var label = relation ? '連携中' : '未連携';
-		$('input[id^="' + targetId + '"]').val(label)
+		var RELATION_TRUE = /*[[ #{store.relation.true} ]]*/;
+		var RELATION_FALSE = /*[[ #{store.relation.false} ]]*/;
+
+		var label = relation ? RELATION_TRUE : RELATION_FALSE;
+		$('input[id="' + targetId + '"]').val(label);
+
+		if (relation) {
+			$('input[id="' + targetId + '"]').addClass('btn-success').removeClass('btn-outline-success');
+		} else {
+			$('input[id="' + targetId + '"]').addClass('btn-outline-success').removeClass('btn-success');
+		}
 	}
 	/*]]>*/
 	</script>
