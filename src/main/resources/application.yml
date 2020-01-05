@@ -5,6 +5,12 @@ spring:  datasource:    url: "jdbc:mysql://127.0.0.1/test?serverTimezone=JST"
     username: "root"
     password: "password"
     driver-class-name: "com.mysql.jdbc.Driver"  flyway:    enabled: false
+  resources:
+    chain:
+      strategy:
+        content:
+          enabled: true
+          paths: /**
 mybatis:
   mapper-locations: db/datasource/*
   type-aliases-package: com.github.apz.model
